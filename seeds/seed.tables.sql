@@ -1,4 +1,4 @@
--- psql -U secilreel -d spaced-repetition-test -f ./seeds/seed.tables.sql
+-- psql -U secilreel -d spaced-repetition -f ./seeds/seed.tables.sql
 
 BEGIN;
 
