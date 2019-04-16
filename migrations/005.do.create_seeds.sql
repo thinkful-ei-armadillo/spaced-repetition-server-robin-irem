@@ -33,9 +33,9 @@ VALUES
   (7, 1, 'perro', 'dog', 8),
   (8, 1, 'gato', 'cat', null);
 
-INSERT INTO "user_words" ("id", "user_id", "word_id", "memory_value", "correct_count", "incorrect_count")
+INSERT INTO "user_words" ("user_id", "word_id", "next")
 VALUES
-  (1, 1, 1, 1, 0, 0);
+  (1, 1, 2);
 
 
 UPDATE "language" SET head = 1 WHERE id = 1;
