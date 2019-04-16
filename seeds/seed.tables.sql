@@ -3,6 +3,7 @@
 BEGIN;
 
 TRUNCATE
+  "user_words",
   "word",
   "language",
   "user";
@@ -31,6 +32,11 @@ VALUES
   (6, 1, 'increible', 'amazing', 7),
   (7, 1, 'perro', 'dog', 8),
   (8, 1, 'gato', 'cat', null);
+
+
+INSERT INTO "user_words" ("id", "user_id", "word_id", "memory_value", "correct_count", "incorrect_count")
+VALUES
+  (1, 1, 1, 1, 0, 0);
 
 UPDATE "language" SET head = 1 WHERE id = 1;
 
