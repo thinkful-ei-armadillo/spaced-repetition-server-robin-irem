@@ -18,9 +18,9 @@ VALUES
     '$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG'
   );
 
-INSERT INTO "language" ("id", "name", "user_id")
+INSERT INTO "language" ("id", "name", "user_id", "totalWords")
 VALUES
-  (1, 'Spanish', 1);
+  (1, 'Spanish', 1, 8);
 
 INSERT INTO "word" ("id", "language_id", "original", "translation", "next")
 VALUES
@@ -39,6 +39,7 @@ VALUES
 
 
 UPDATE "language" SET head = 1 WHERE id = 1;
+UPDATE "language" SET tail = 8 WHERE id = 1;
 
 -- because we explicitly set the id fields
 -- update the sequencer for future automatic id setting

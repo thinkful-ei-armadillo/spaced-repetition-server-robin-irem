@@ -3,6 +3,7 @@ const LanguageService = require('./language-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 const languageRouter = express.Router()
+const jsonBodyParser = express.json()
 
 languageRouter
   .use(requireAuth)
@@ -46,7 +47,8 @@ languageRouter
   .get('/head', async (req, res, next) => {
     try{
     const headId = req.language.head;
-    const head = await LanguageService.getWordById(req.app.get('db'), headId);
+    const headFromDatabase = await LanguageService.getWordById(req.app.get('db'), headId);
+    // const head = Object
      res.json({
       nextWord: head[0].original,
       wordCorrectCount: head[0].correct_count,
@@ -60,9 +62,42 @@ languageRouter
   })
 
 languageRouter
-  .post('/guess', async (req, res, next) => {
-    // implement me
-    res.send('implement me!')
+  .post('/guess', jsonBodyParser, async (req, res, next) => {
+    const {answer} = req.body;
+    const {language} =req;
+    const headFromDatabase = await LanguageService.getWordById(req.app.get('db'), language.head);
+    const head = headFromDatabase[0];
+    const nextWordFromDatabase = await LanguageService.getWordById(req.app.get('db'), head.next);
+    const nextWord = nextWordFromDatabase[0];
+  
+ 
+    if(answer === 'incorrect'){
+      head.next = head.next + 2;//moves up two 
+      head.incorrect_count = head.incorrect_count + 1;
+      nextWord.next = head.id; //points to current
+      language.head = nextWord.id;
+      console.log(language);
+      console.log(nextWord)
+      console.log(head)
+      LanguageService.updateWordPointer(req.app.get('db'), head)
+      LanguageService.updateWordPointer(req.app.get('db'), nextWord)
+      LanguageService.updateHead(req.app.get('db'), language)
+     } //set user head to next
+      // LanguageService.wrongAnswer(req.app.get('db'))
+    else if(answer === 'correct')
+    //   if()
+    //   head.next =null => appendtoEnd
+    //  // set.user head to next
+
+     //at end return user info
+
+      // nextWord: testLanguagesWords[1].original,
+      // totalScore: 0,
+      // wordCorrectCount: 0,
+      // wordIncorrectCount: 0,
+      // answer: testLanguagesWords[0].translation,
+      // isCorrect: false
+    res.json('implement me!')
   })
 
 module.exports = languageRouter
