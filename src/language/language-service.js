@@ -33,8 +33,7 @@ const LanguageService = {
   getWordById(db, id){
     return db
     .from('word')
-    .select('*')
-    // .select('correct_count', 'incorrect_count', 'next','translation','original','id')
+    .select('correct_count', 'incorrect_count', 'next','translation','original','id','memory_value')
     .where({id})
   },
   updateWordPointer(db, updatedPointer){
@@ -46,9 +45,19 @@ const LanguageService = {
   updateHead(db, updatedLang){
     console.log('hi')
     return db.into('language')
-    .where({user_id: updatedLang.id})
-    .update(updatedLang);
-  }
+    .where({id: updatedLang.id})
+    .update(updatedLang).returning('*');
+  },
+  // getNthMemory(db, value, nth, result = 0){
+  //   if(nth === result){
+  //     return value;
+  //    }
+  //    result + 1;
+  //    console.log(value)
+  //  const head = this.getWordById(db, value.next);
+  //  const headObj = head[0]
+  //  return this.getNthMemory(db, headObj, nth, result);
+  // } 
 }
 
 module.exports = LanguageService
