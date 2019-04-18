@@ -102,8 +102,8 @@ languageRouter
         isCorrect,
         nextWord: nextWord.original,
         totalScore: language.total_score,
-        wordCorrectCount: head.correct_count,
-        wordIncorrectCount: head.incorrect_count,
+        wordCorrectCount: nextWord.correct_count,
+        wordIncorrectCount: nextWord.incorrect_count,
         answer: head.translation
       })
     } catch (error) {
