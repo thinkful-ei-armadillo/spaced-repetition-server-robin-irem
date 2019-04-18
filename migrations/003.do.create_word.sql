@@ -15,9 +15,9 @@ ALTER TABLE "language"
   ADD COLUMN "head" INTEGER REFERENCES "word"(id)
     ON DELETE SET NULL;
 
-ALTER TABLE "language"
-  ADD COLUMN "tail" INTEGER REFERENCES "word"(id)
-    ON DELETE SET NULL;
+-- ALTER TABLE "language"
+--   ADD COLUMN "tail" INTEGER REFERENCES "word"(id)
+--     ON DELETE SET NULL;
 
-ALTER TABLE "language"
-  Add COLUMN "totalWords" INTEGER NOT NULL;
+-- ALTER TABLE "language"
+--   Add COLUMN "totalWords" INTEGER NOT NULL;
