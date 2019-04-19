@@ -1,4 +1,3 @@
--- psql -U secilreel -d spaced-repetition -f ./seeds/seed.tables.sql
 
 BEGIN;
 
@@ -14,7 +13,6 @@ VALUES
     1,
     'admin',
     'Dunder Mifflin Admin',
-    -- password = "pass"
     '$2a$10$fCWkaGbt7ZErxaxclioLteLUgg4Q3Rp09WW0s/wSLxDKYsaGYUpjG'
   );
 
@@ -33,15 +31,8 @@ VALUES
   (7, 1, 'perro', 'dog', 8),
   (8, 1, 'gato', 'cat', null);
 
-
-INSERT INTO "user_words" ("id", "user_id", "word_id", "memory_value", "correct_count", "incorrect_count")
-VALUES
-  (1, 1, 1, 1, 0, 0);
-
 UPDATE "language" SET head = 1 WHERE id = 1;
 
--- because we explicitly set the id fields
--- update the sequencer for future automatic id setting
 SELECT setval('word_id_seq', (SELECT MAX(id) from "word"));
 SELECT setval('language_id_seq', (SELECT MAX(id) from "language"));
 SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));

@@ -1,7 +1,4 @@
-ALTER TABLE "language"
-  DROP COLUMN IF EXISTS "totalWords";
-ALTER TABLE "language"
-  DROP COLUMN IF EXISTS "tail";
+
 ALTER TABLE "language"
   DROP COLUMN IF EXISTS "head";
 

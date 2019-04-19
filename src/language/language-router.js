@@ -92,7 +92,7 @@ languageRouter
       language.head = nextWord.id;
 
       LanguageService.updateWordPointer(req.app.get('db'), head)
-      .then(() => next())
+        .then(() => next())
       LanguageService.updateWordPointer(req.app.get('db'), traversetoMemoryValue)
         .then(() => next())
       LanguageService.updateHead(req.app.get('db'), language)
@@ -112,7 +112,7 @@ languageRouter
   })
 
   async function  getNthMemory (db, node, nth, result = 0){
-    if(node.next === null | nth === result)
+    if(node.next === null || nth === result)
       return node;
     const head = await LanguageService.getWordById(db, node.next);
     return getNthMemory(db, head, nth, result + 1);
